@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tribuna SENAI - Envio de Alunos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="folha-jornal">
+        
+        <div class="cabecalho">
+            <h1 class="titulo-jornal">A TRIBUNA DO SENAI</h1>
+            <div class="subtitulo-jornal">CADERNO DE TECNOLOGIA: FUTUROS PROFISSIONAIS</div>
+        </div>
+
+        <nav>
+            <a href="index.html">Capa do Dia</a>
+            <a href="alunos.html">Envie: Projetos Estudantis</a>
+            <a href="professores.html">Envie: Pesquisa Docente</a>
+            <a href="sobre.html">Sobre o Jornal</a>
+        </nav>
+
+        <div class="manchete-principal" style="margin-bottom: 10px;">
+            <h1 style="font-size: 3.5rem;">CONVOCAÇÃO DE TALENTOS</h1>
+            <h2>Tem um projeto inovador? O mundo industrial precisa saber. Cadastre abaixo.</h2>
+        </div>
+
+        <div class="formulario-box">
+            <h2>Publicar Projeto de Aluno</h2>
+            
+            <form onsubmit="mostrarMensagem(event)">
+                <div class="form-group">
+                    <label>Nome do Projeto (Manchete):</label>
+                    <input type="text" placeholder="Ex: Braço Robótico Sustentável" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nomes dos Alunos (Autores):</label>
+                    <input type="text" placeholder="Ex: Ana Silva, João Souza" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Professor(a) Orientador(a):</label>
+                    <input type="text" placeholder="Ex: Prof. Carlos Eduardo" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição Detalhada do Projeto:</label>
+                    <textarea rows="6" placeholder="Explique como funciona, quais problemas resolve e quais tecnologias foram usadas..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Anexar Foto (Opcional):</label>
+                    <input type="file" accept="image/*">
+                </div>
+
+                <button type="submit" class="btn-enviar">ENVIAR PARA A REDAÇÃO</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Modal (Mensagem de Aviso Atualizada) -->
+    <div class="modal-overlay" id="avisoModal">
+        <div class="modal-content">
+            <h3>Projeto Enviado com Sucesso!</h3>
+            <p>Seu projeto foi encaminhado com segurança para a equipe de redação do nosso jornal.</p>
+            <p><strong>Ele passará por uma análise técnica e, caso seja aprovado, você receberá um aviso da diretoria antes da publicação na próxima edição.</strong></p>
+            <button class="modal-btn" onclick="fecharMensagem()">FECHAR E RETORNAR</button>
+        </div>
+    </div>
+
+    <script>
+        function mostrarMensagem(event) {
+            event.preventDefault(); 
+            document.getElementById('avisoModal').style.display = 'flex';
+        }
+
+        function fecharMensagem() {
+            document.getElementById('avisoModal').style.display = 'none';
+            document.querySelector('form').reset(); 
+        }
+    </script>
+
+</body>
+</html>
