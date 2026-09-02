@@ -4,6 +4,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Evita que palavras grandes vazem das caixas */
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
 }
 
 body {
@@ -62,6 +65,15 @@ body {
     font-weight: bold;
     letter-spacing: 1px;
     font-size: 1.2rem;
+}
+
+/* ESTILO DO BOTÃO DE MENU E OVERLAY (OCULTOS NO COMPUTADOR) */
+.menu-toggle {
+    display: none;
+}
+
+.overlay-menu {
+    display: none;
 }
 
 nav {
@@ -315,48 +327,90 @@ nav a:hover {
 
 /* AJUSTES PARA VERSÃO MOBILE (CELULAR) */
 @media (max-width: 768px) {
-    .colunas-noticia {
-        column-count: 1;
+    body {
+        padding: 0; /* Remove a margem cinza ao redor */
+        background-color: #fdfbf7; /* O fundo do site vira bege */
+    }
+
+    .folha-jornal {
+        padding: 15px; 
+        box-shadow: none; /* Remove a sombra do computador */
+        border: none; /* Remove a borda exterior */
     }
     
+    .colunas-noticia {
+        column-count: 1; /* Uma única coluna */
+    }
+    
+    /* TÍTULOS MAIORES PARA FACILITAR A LEITURA */
     .titulo-jornal {
-        font-size: 3rem; 
+        font-size: 4rem; 
     }
     
     .manchete-principal h1 {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
     }
 
     .manchete-principal h2 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+    }
+
+    /* SISTEMA DE MENU LATERAL (HUB) */
+    .menu-toggle {
+        display: block;
+        background-color: #000;
+        color: #fff;
+        padding: 12px;
+        text-align: center;
+        font-family: 'Impact', sans-serif;
+        font-size: 1.6rem;
+        cursor: pointer;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .overlay-menu.aberto {
+        display: block;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 998;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: -280px; /* Escondido fora da tela */
+        width: 250px;
+        height: 100%;
+        background-color: #111;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-top: 60px;
+        margin: 0;
+        border: none;
+        z-index: 999;
+        transition: left 0.3s ease-in-out;
     }
     
-    nav {
-        flex-direction: column;
-        gap: 10px;
-        border-bottom: none;
-        margin-bottom: 20px;
+    nav.aberto {
+        left: 0; /* Desliza para dentro da tela */
     }
     
     nav a {
         display: block;
         width: 100%;
-        background-color: #000;
         color: #fff;
-        padding: 15px;
-        text-align: center;
+        padding: 20px;
         margin: 0;
-        border-radius: 4px;
+        border-bottom: 1px solid #333;
+        text-align: left;
     }
 
     nav a:hover {
-        color: #fff;
         background-color: #c71515;
         text-decoration: none;
-    }
-
-    .folha-jornal {
-        padding: 15px; 
     }
     
     .barra {
