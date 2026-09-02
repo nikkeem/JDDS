@@ -29,57 +29,112 @@
         <div class="formulario-box">
             <h2>Publicar Projeto de Aluno</h2>
             
-            <form onsubmit="mostrarMensagem(event)">
+            <form id="formAluno" onsubmit="salvarProjetoAluno(event)">
                 <div class="form-group">
                     <label>Nome do Projeto (Manchete):</label>
-                    <input type="text" placeholder="Ex: Braço Robótico Sustentável" required>
+                    <input type="text" id="tituloAluno" placeholder="Ex: Braço Robótico Sustentável" required>
                 </div>
                 
                 <div class="form-group">
                     <label>Nomes dos Alunos (Autores):</label>
-                    <input type="text" placeholder="Ex: Ana Silva, João Souza" required>
+                    <input type="text" id="autoresAluno" placeholder="Ex: Ana Silva, João Souza" required>
                 </div>
 
                 <div class="form-group">
                     <label>Professor(a) Orientador(a):</label>
-                    <input type="text" placeholder="Ex: Prof. Carlos Eduardo" required>
+                    <input type="text" id="orientadorAluno" placeholder="Ex: Prof. Carlos Eduardo" required>
                 </div>
 
                 <div class="form-group">
                     <label>Descrição Detalhada do Projeto:</label>
-                    <textarea rows="6" placeholder="Explique como funciona, quais problemas resolve e quais tecnologias foram usadas..." required></textarea>
+                    <textarea id="descricaoAluno" rows="6" placeholder="Explique como funciona, quais problemas resolve e quais tecnologias foram usadas..." required></textarea>
                 </div>
 
+                <!-- CAMPO DE FOTO COM MENSAGEM E PRÉ-VISUALIZAÇÃO -->
                 <div class="form-group">
                     <label>Anexar Foto (Opcional):</label>
-                    <input type="file" accept="image/*">
+                    <input type="file" id="fotoAluno" accept="image/*" onchange="previsualizarImagem(this)">
+                    <small style="display:block; font-family: Arial, sans-serif; color: #666; font-size: 0.85rem; margin-top: 5px; font-weight: bold;">
+                        📐 Tamanho recomendado: 800x400 pixels (Proporção 16:9) para preencher perfeitamente a moldura do jornal.
+                    </small>
+
+                    <div id="containerPreview" style="display: none; margin-top: 15px;" class="foto-jornal">
+                        <img id="imgPreview" src="#" alt="Pré-visualização">
+                        <div class="legenda">Pré-visualização da Imagem Selecionada</div>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn-enviar">ENVIAR PARA A REDAÇÃO</button>
+                <button type="submit" class="btn-enviar">🚀 PUBLICAR PROJETO NA CAPA</button>
             </form>
         </div>
 
     </div>
 
-    <!-- Modal (Mensagem de Aviso Atualizada) -->
+    <!-- Modal -->
     <div class="modal-overlay" id="avisoModal">
         <div class="modal-content">
-            <h3>Projeto Enviado com Sucesso!</h3>
-            <p>Seu projeto foi encaminhado com segurança para a equipe de redação do nosso jornal.</p>
-            <p><strong>Ele passará por uma análise técnica e, caso seja aprovado, você receberá um aviso da diretoria antes da publicação na próxima edição.</strong></p>
-            <button class="modal-btn" onclick="fecharMensagem()">FECHAR E RETORNAR</button>
+            <h3>Projeto Publicado!</h3>
+            <p>Seu projeto foi adicionado à capa do jornal na seção inferior.</p>
+            <button class="modal-btn" onclick="irParaCapa()">VER NA CAPA DO DIA</button>
         </div>
     </div>
 
     <script>
-        function mostrarMensagem(event) {
-            event.preventDefault(); 
-            document.getElementById('avisoModal').style.display = 'flex';
+        function previsualizarImagem(input) {
+            const previewContainer = document.getElementById('containerPreview');
+            const previewImg = document.getElementById('imgPreview');
+
+            if (input.files && input.files[0]) {
+                const leitor = new FileReader();
+                leitor.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    previewContainer.style.display = 'flex';
+                }
+                leitor.readAsDataURL(input.files[0]);
+            } else {
+                previewContainer.style.display = 'none';
+            }
         }
 
-        function fecharMensagem() {
-            document.getElementById('avisoModal').style.display = 'none';
-            document.querySelector('form').reset(); 
+        function salvarProjetoAluno(event) {
+            event.preventDefault();
+
+            const titulo = document.getElementById('tituloAluno').value;
+            const autores = document.getElementById('autoresAluno').value;
+            const orientador = document.getElementById('orientadorAluno').value;
+            const descricao = document.getElementById('descricaoAluno').value;
+            const fotoInput = document.getElementById('fotoAluno');
+
+            function guardarEExibir(imagemData) {
+                const novoProjeto = {
+                    tipo: 'aluno',
+                    titulo: titulo,
+                    autores: autores,
+                    subinfo: 'Orientador: ' + orientador,
+                    descricao: descricao,
+                    imagem: imagemData
+                };
+
+                const projetos = JSON.parse(localStorage.getItem('projetosSENAI')) || [];
+                projetos.unshift(novoProjeto);
+                localStorage.setItem('projetosSENAI', JSON.stringify(projetos));
+
+                document.getElementById('avisoModal').style.display = 'flex';
+            }
+
+            if (fotoInput.files && fotoInput.files[0]) {
+                const leitor = new FileReader();
+                leitor.onload = function(e) {
+                    guardarEExibir(e.target.result);
+                };
+                leitor.readAsDataURL(fotoInput.files[0]);
+            } else {
+                guardarEExibir(null);
+            }
+        }
+
+        function irParaCapa() {
+            window.location.href = 'index.html';
         }
     </script>
 

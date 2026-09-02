@@ -26,6 +26,7 @@
             <a href="sobre.html">Sobre o Jornal</a>
         </nav>
 
+        <!-- MANCHETE PRINCIPAL -->
         <div class="manchete-principal">
             <h1>ÚLTIMA HORA: O PORTAL DEFINITIVO CHEGOU</h1>
             <h2>Instituição lança jornal digital para impulsionar as mentes mais brilhantes do campus. O mercado de trabalho está de olho!</h2>
@@ -39,8 +40,9 @@
                 O objetivo desta iniciativa é claro: dar voz aos alunos e professores, transformar ideias de fim de semestre em patentes reais e conectar nossos talentos diretamente com grandes empresas do mercado de trabalho.
             </p>
 
+            <!-- FOTO DA NOTÍCIA DE CAPA -->
             <div class="foto-jornal">
-                <div style="height: 100%; width: 150;"><img src="grafico.jpeg" alt=""></div>
+                <img src="grafico.jpeg" alt="Gráfico de crescimento">
                 <div class="legenda">GRÁFICO 1: O aumento drástico de contratações esperadas após o lançamento da plataforma.</div>
             </div>
 
@@ -53,42 +55,119 @@
             MAIS NOTÍCIAS DA EDIÇÃO DE HOJE
         </div>
 
+        <!-- NOTÍCIAS FICTÍCIAS FIXAS SEPARADAS POR LINHAS -->
         <div class="colunas-noticia">
             <!-- Notícia 1 -->
-            <h2 style="font-family: 'Impact'; font-size: 2rem; color: #c71515; line-height: 1; margin-bottom: 10px;">
-                MECATRÔNICA ATACA NOVAMENTE: ROBÔ RECICLADOR ENTRA EM FASE DE TESTES
-            </h2>
-            <p>
-                Alunos do 3º semestre desenvolveram um braço robótico autônomo capaz de identificar e separar lixo eletrônico. Utilizando sensores de visão computacional, a invenção promete reduzir em 40% o tempo de triagem nas usinas locais. As empresas da região já demonstraram interesse na patente.
-            </p>
-            
+            <div style="break-inside: avoid;">
+                <h2 style="font-family: 'Impact'; font-size: 2rem; color: #c71515; line-height: 1; margin-bottom: 10px;">
+                    MECATRÔNICA ATACA NOVAMENTE: ROBÔ RECICLADOR ENTRA EM FASE DE TESTES
+                </h2>
+                <p>
+                    Alunos do 3º semestre desenvolveram um braço robótico autônomo capaz de identificar e separar lixo eletrônico. Utilizando sensores de visão computacional, a invenção promete reduzir em 40% o tempo de triagem nas usinas locais. As empresas da região já demonstraram interesse na patente.
+                </p>
+            </div>
+
             <br><hr style="border: 1px dashed #000; margin: 15px 0;"><br>
 
             <!-- Notícia 2 -->
-            <h2 style="font-family: 'Impact'; font-size: 2rem; color: #111; line-height: 1; margin-bottom: 10px;">
-                SUSTENTABILIDADE EM FOCO: NOVO SISTEMA DE IRRIGAÇÃO INTELIGENTE
-            </h2>
-            <p>
-                Desenvolvido pela turma de Eletrotécnica, o novo sistema utiliza sensores de umidade do solo integrados a painéis solares para otimizar o uso da água nas estufas do campus. O projeto reduziu o desperdício hídrico em 30% nas primeiras semanas de teste prático.
-            </p>
+            <div style="break-inside: avoid;">
+                <h2 style="font-family: 'Impact'; font-size: 2rem; color: #111; line-height: 1; margin-bottom: 10px;">
+                    SUSTENTABILIDADE EM FOCO: NOVO SISTEMA DE IRRIGAÇÃO INTELIGENTE
+                </h2>
+                <p>
+                    Desenvolvido pela turma de Eletrotécnica, o novo sistema utiliza sensores de umidade do solo integrados a painéis solares para otimizar o uso da água nas estufas do campus. O projeto reduziu o desperdício hídrico em 30% nas primeiras semanas de teste prático.
+                </p>
+            </div>
 
             <br><hr style="border: 1px dashed #000; margin: 15px 0;"><br>
 
-            <!-- Notícia 3 -->
-            <h2 style="font-family: 'Impact'; font-size: 2rem; color: #111; line-height: 1; margin-bottom: 10px;">
-                "A INDÚSTRIA 4.0 NÃO ESPERA", DIZ PROFESSOR APÓS PREMIAÇÃO
-            </h2>
-            <div class="foto-jornal">
-                <div style="width: 100%; height: 120px;"><img src="homen.jpeg" alt=""></div>
-                <div class="legenda">Prof. Roberto Alves recebendo a premiação na capital.</div>
+            <!-- Notícia 3 com foto -->
+            <div style="break-inside: avoid;">
+                <h2 style="font-family: 'Impact'; font-size: 2rem; color: #111; line-height: 1; margin-bottom: 10px;">
+                    "A INDÚSTRIA 4.0 NÃO ESPERA", DIZ PROFESSOR APÓS PREMIAÇÃO
+                </h2>
+                <div class="foto-jornal">
+                    <img src="homen.jpeg" alt="Prof. Roberto Alves">
+                    <div class="legenda">Prof. Roberto Alves recebendo a premiação na capital.</div>
+                </div>
+                <p>
+                    Após vencer o prêmio nacional de Inovação em Software Industrial, o professor Roberto Alves deu uma declaração forte aos nossos repórteres. "Se nossos alunos não aprenderem a programar as máquinas de hoje, serão substituídos por elas amanhã. É por isso que nossos laboratórios operam com rigor máximo." 
+                </p>
             </div>
-            <p>
-                Após vencer o prêmio nacional de Inovação em Software Industrial, o professor Roberto Alves deu uma declaração forte aos nossos repórteres. "Se nossos alunos não aprenderem a programar as máquinas de hoje, serão substituídos por elas amanhã. É por isso que nossos laboratórios operam com rigor máximo." 
-            </p>
+        </div>
 
+        <!-- SEÇÃO DE PROJETOS ENVIADOS PELOS USUÁRIOS (SEPARADOS TAMBÉM POR LINHAS PONTILHADAS) -->
+        <div id="secao-novos-projetos"></div>
+
+        <!-- Botão para resetar a demonstração -->
+        <div style="text-align: center; margin-top: 40px;">
+            <button onclick="limparProjetosApresentacao()" style="background-color: #555; color: #fff; border: none; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;">[Apresentação] Limpar Projetos Adicionados</button>
         </div>
 
     </div>
+
+    <script>
+        function carregarProjetos() {
+            const conteiner = document.getElementById('secao-novos-projetos');
+            const projetosSalvos = JSON.parse(localStorage.getItem('projetosSENAI')) || [];
+
+            if (projetosSalvos.length === 0) {
+                conteiner.innerHTML = '';
+                return;
+            }
+
+            let htmlFinal = `
+                <div style="border-top: 6px solid #c71515; border-bottom: 2px solid #c71515; margin: 40px 0 25px 0; padding: 5px 0; text-align: center; font-weight: bold; font-family: Arial; color: #c71515;">
+                    PROJETOS E PESQUISAS PUBLICADOS PELA COMUNIDADE
+                </div>
+                <div class="colunas-noticia">
+            `;
+
+            projetosSalvos.forEach((proj, index) => {
+                htmlFinal += `
+                    <div style="break-inside: avoid;">
+                        <span style="background: #000; color: #fff; font-family: Arial; font-weight: bold; padding: 2px 6px; font-size: 0.75rem; text-transform: uppercase;">
+                            ${proj.tipo === 'aluno' ? 'PROJETO ESTUDANTIL' : 'PESQUISA DOCENTE'}
+                        </span>
+                        <h2 style="font-family: 'Impact'; font-size: 2rem; color: #111; line-height: 1; margin: 10px 0 5px 0;">
+                            ${proj.titulo}
+                        </h2>
+                        <p style="font-family: Arial, sans-serif; font-size: 0.85rem; font-weight: bold; color: #c71515; margin-bottom: 10px;">
+                            ${proj.tipo === 'aluno' ? 'Autores:' : 'Responsável:'} ${proj.autores} | ${proj.subinfo}
+                        </p>
+                        
+                        ${proj.imagem ? `
+                            <div class="foto-jornal">
+                                <img src="${proj.imagem}" alt="${proj.titulo}">
+                                <div class="legenda">Registro enviado para a publicação.</div>
+                            </div>
+                        ` : ''}
+
+                        <p style="font-size: 1.1rem; line-height: 1.4; text-align: justify; font-family: 'Times New Roman', serif;">
+                            ${proj.descricao}
+                        </p>
+                    </div>
+                `;
+
+                // Adiciona linha tracejada entre os projetos adicionados
+                if (index < projetosSalvos.length - 1) {
+                    htmlFinal += `<br><hr style="border: 1px dashed #000; margin: 15px 0;"><br>`;
+                }
+            });
+
+            htmlFinal += `</div>`;
+            conteiner.innerHTML = htmlFinal;
+        }
+
+        function limparProjetosApresentacao() {
+            if (confirm("Deseja apagar os projetos adicionados para reiniciar a demonstração?")) {
+                localStorage.removeItem('projetosSENAI');
+                carregarProjetos();
+            }
+        }
+
+        window.onload = carregarProjetos;
+    </script>
 
 </body>
 </html>
