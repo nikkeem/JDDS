@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tribuna SENAI - Capa</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -26,7 +27,6 @@
             <a href="sobre.html">Sobre o Jornal</a>
         </nav>
 
-        <!-- MANCHETE PRINCIPAL -->
         <div class="manchete-principal">
             <h1>ÚLTIMA HORA: O PORTAL DEFINITIVO CHEGOU</h1>
             <h2>Instituição lança jornal digital para impulsionar as mentes mais brilhantes do campus. O mercado de trabalho está de olho!</h2>
@@ -40,7 +40,6 @@
                 O objetivo desta iniciativa é claro: dar voz aos alunos e professores, transformar ideias de fim de semestre em patentes reais e conectar nossos talentos diretamente com grandes empresas do mercado de trabalho.
             </p>
 
-            <!-- FOTO DA NOTÍCIA DE CAPA -->
             <div class="foto-jornal">
                 <img src="grafico.jpeg" alt="Gráfico de crescimento">
                 <div class="legenda">GRÁFICO 1: O aumento drástico de contratações esperadas após o lançamento da plataforma.</div>
@@ -55,9 +54,7 @@
             MAIS NOTÍCIAS DA EDIÇÃO DE HOJE
         </div>
 
-        <!-- NOTÍCIAS FICTÍCIAS FIXAS SEPARADAS POR LINHAS -->
         <div class="colunas-noticia">
-            <!-- Notícia 1 -->
             <div style="break-inside: avoid;">
                 <h2 style="font-family: 'Impact'; font-size: 2rem; color: #c71515; line-height: 1; margin-bottom: 10px;">
                     MECATRÔNICA ATACA NOVAMENTE: ROBÔ RECICLADOR ENTRA EM FASE DE TESTES
@@ -69,7 +66,6 @@
 
             <br><hr style="border: 1px dashed #000; margin: 15px 0;"><br>
 
-            <!-- Notícia 2 -->
             <div style="break-inside: avoid;">
                 <h2 style="font-family: 'Impact'; font-size: 2rem; color: #111; line-height: 1; margin-bottom: 10px;">
                     SUSTENTABILIDADE EM FOCO: NOVO SISTEMA DE IRRIGAÇÃO INTELIGENTE
@@ -81,7 +77,6 @@
 
             <br><hr style="border: 1px dashed #000; margin: 15px 0;"><br>
 
-            <!-- Notícia 3 com foto -->
             <div style="break-inside: avoid;">
                 <h2 style="font-family: 'Impact'; font-size: 2rem; color: #111; line-height: 1; margin-bottom: 10px;">
                     "A INDÚSTRIA 4.0 NÃO ESPERA", DIZ PROFESSOR APÓS PREMIAÇÃO
@@ -96,10 +91,8 @@
             </div>
         </div>
 
-        <!-- SEÇÃO DE PROJETOS ENVIADOS PELOS USUÁRIOS (SEPARADOS TAMBÉM POR LINHAS PONTILHADAS) -->
         <div id="secao-novos-projetos"></div>
 
-        <!-- Botão para resetar a demonstração -->
         <div style="text-align: center; margin-top: 40px;">
             <button onclick="limparProjetosApresentacao()" style="background-color: #555; color: #fff; border: none; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;">[Apresentação] Limpar Projetos Adicionados</button>
         </div>
@@ -149,7 +142,6 @@
                     </div>
                 `;
 
-                // Adiciona linha tracejada entre os projetos adicionados
                 if (index < projetosSalvos.length - 1) {
                     htmlFinal += `<br><hr style="border: 1px dashed #000; margin: 15px 0;"><br>`;
                 }

@@ -125,7 +125,6 @@ nav a:hover {
     color: #c71515;
 }
 
-/* FOTO AJUSTADA */
 .foto-jornal {
     width: 100%;
     border: 3px solid #000;
@@ -159,7 +158,6 @@ nav a:hover {
     text-align: left;
 }
 
-/* ESTILIZAÇÃO DO GRÁFICO DE BARRAS */
 .grafico-container {
     border: 3px solid #000;
     background-color: #f4f4f4;
@@ -313,4 +311,55 @@ nav a:hover {
     cursor: pointer;
     margin-top: 20px;
     font-size: 1.2rem;
+}
+
+/* AJUSTES PARA VERSÃO MOBILE (CELULAR) */
+@media (max-width: 768px) {
+    .colunas-noticia {
+        column-count: 1;
+    }
+    
+    .titulo-jornal {
+        font-size: 3rem; 
+    }
+    
+    .manchete-principal h1 {
+        font-size: 2.2rem;
+    }
+
+    .manchete-principal h2 {
+        font-size: 1.2rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        border-bottom: none;
+        margin-bottom: 20px;
+    }
+    
+    nav a {
+        display: block;
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        margin: 0;
+        border-radius: 4px;
+    }
+
+    nav a:hover {
+        color: #fff;
+        background-color: #c71515;
+        text-decoration: none;
+    }
+
+    .folha-jornal {
+        padding: 15px; 
+    }
+    
+    .barra {
+        font-size: 0.7rem; 
+    }
 }
