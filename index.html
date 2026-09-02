@@ -20,7 +20,14 @@
             <div class="subtitulo-jornal">INOVAÇÃO E TECNOLOGIA PARA O FUTURO DA INDÚSTRIA</div>
         </div>
 
-        <nav>
+        <!-- Botão para abrir o menu no celular -->
+        <div class="menu-toggle" onclick="toggleMenu()">☰ ABRIR MENU</div>
+        
+        <!-- Fundo escuro quando o menu abre -->
+        <div class="overlay-menu" id="overlay" onclick="toggleMenu()"></div>
+
+        <!-- O Menu agora vira uma aba lateral no celular -->
+        <nav id="menuPrincipal">
             <a href="index.html">Capa do Dia</a>
             <a href="alunos.html">Envie: Projetos Estudantis</a>
             <a href="professores.html">Envie: Pesquisa Docente</a>
@@ -100,6 +107,11 @@
     </div>
 
     <script>
+        function toggleMenu() {
+            document.getElementById('menuPrincipal').classList.toggle('aberto');
+            document.getElementById('overlay').classList.toggle('aberto');
+        }
+
         function carregarProjetos() {
             const conteiner = document.getElementById('secao-novos-projetos');
             const projetosSalvos = JSON.parse(localStorage.getItem('projetosSENAI')) || [];
