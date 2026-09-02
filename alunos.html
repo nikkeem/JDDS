@@ -15,7 +15,10 @@
             <div class="subtitulo-jornal">CADERNO DE TECNOLOGIA: FUTUROS PROFISSIONAIS</div>
         </div>
 
-        <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">☰ ABRIR MENU</div>
+        <div class="overlay-menu" id="overlay" onclick="toggleMenu()"></div>
+
+        <nav id="menuPrincipal">
             <a href="index.html">Capa do Dia</a>
             <a href="alunos.html">Envie: Projetos Estudantis</a>
             <a href="professores.html">Envie: Pesquisa Docente</a>
@@ -55,7 +58,7 @@
                     <label>Anexar Foto (Opcional):</label>
                     <input type="file" id="fotoAluno" accept="image/*" onchange="previsualizarImagem(this)">
                     <small style="display:block; font-family: Arial, sans-serif; color: #666; font-size: 0.85rem; margin-top: 5px; font-weight: bold;">
-                        📐 Tamanho recomendado: 800x400 pixels (Proporção 16:9) para preencher perfeitamente a moldura do jornal.
+                        📐 Tamanho recomendado: 800x400 pixels (Proporção 16:9).
                     </small>
 
                     <div id="containerPreview" style="display: none; margin-top: 15px;" class="foto-jornal">
@@ -80,6 +83,11 @@
     </div>
 
     <script>
+        function toggleMenu() {
+            document.getElementById('menuPrincipal').classList.toggle('aberto');
+            document.getElementById('overlay').classList.toggle('aberto');
+        }
+
         function previsualizarImagem(input) {
             const previewContainer = document.getElementById('containerPreview');
             const previewImg = document.getElementById('imgPreview');
