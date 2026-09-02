@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tribuna SENAI - Envio de Alunos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="folha-jornal">
+        
+        <div class="cabecalho">
+            <h1 class="titulo-jornal">A TRIBUNA DO SENAI</h1>
+            <div class="subtitulo-jornal">CADERNO DE TECNOLOGIA: FUTUROS PROFISSIONAIS</div>
+        </div>
+
+        <nav>
+            <a href="index.html">Capa do Dia</a>
+            <a href="alunos.html">Envie: Projetos Estudantis</a>
+            <a href="professores.html">Envie: Pesquisa Docente</a>
+            <a href="sobre.html">Sobre o Jornal</a>
+        </nav>
+
+        <div class="manchete-principal" style="margin-bottom: 10px;">
+            <h1 style="font-size: 3.5rem;">CONVOCAÇÃO DE TALENTOS</h1>
+            <h2>Tem um projeto inovador? O mundo industrial precisa saber. Cadastre abaixo.</h2>
+        </div>
+
+        <div class="formulario-box">
+            <h2>Publicar Projeto de Aluno</h2>
+            
+            <form id="formAluno" onsubmit="salvarProjetoAluno(event)">
+                <div class="form-group">
+                    <label>Nome do Projeto (Manchete):</label>
+                    <input type="text" id="tituloAluno" placeholder="Ex: Braço Robótico Sustentável" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nomes dos Alunos (Autores):</label>
+                    <input type="text" id="autoresAluno" placeholder="Ex: Ana Silva, João Souza" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Professor(a) Orientador(a):</label>
+                    <input type="text" id="orientadorAluno" placeholder="Ex: Prof. Carlos Eduardo" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição Detalhada do Projeto:</label>
+                    <textarea id="descricaoAluno" rows="6" placeholder="Explique como funciona, quais problemas resolve e quais tecnologias foram usadas..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Anexar Foto (Opcional):</label>
+                    <input type="file" id="fotoAluno" accept="image/*" onchange="previsualizarImagem(this)">
+                    <small style="display:block; font-family: Arial, sans-serif; color: #666; font-size: 0.85rem; margin-top: 5px; font-weight: bold;">
+                        📐 Tamanho recomendado: 800x400 pixels (Proporção 16:9) para preencher perfeitamente a moldura do jornal.
+                    </small>
+
+                    <div id="containerPreview" style="display: none; margin-top: 15px;" class="foto-jornal">
+                        <img id="imgPreview" src="#" alt="Pré-visualização">
+                        <div class="legenda">Pré-visualização da Imagem Selecionada</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-enviar">🚀 PUBLICAR PROJETO NA CAPA</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="avisoModal">
+        <div class="modal-content">
+            <h3>Projeto Publicado!</h3>
+            <p>Seu projeto foi adicionado à capa do jornal na seção inferior.</p>
+            <button class="modal-btn" onclick="irParaCapa()">VER NA CAPA DO DIA</button>
+        </div>
+    </div>
+
+    <script>
+        function previsualizarImagem(input) {
+            const previewContainer = document.getElementById('containerPreview');
+            const previewImg = document.getElementById('imgPreview');
+
+            if (input.files && input.files[0]) {
+                const leitor = new FileReader();
+                leitor.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    previewContainer.style.display = 'flex';
+                }
+                leitor.readAsDataURL(input.files[0]);
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        }
+
+        function salvarProjetoAluno(event) {
+            event.preventDefault();
+
+            const titulo = document.getElementById('tituloAluno').value;
+            const autores = document.getElementById('autoresAluno').value;
+            const orientador = document.getElementById('orientadorAluno').value;
+            const descricao = document.getElementById('descricaoAluno').value;
+            const fotoInput = document.getElementById('fotoAluno');
+
+            function guardarEExibir(imagemData) {
+                const novoProjeto = {
+                    tipo: 'aluno',
+                    titulo: titulo,
+                    autores: autores,
+                    subinfo: 'Orientador: ' + orientador,
+                    descricao: descricao,
+                    imagem: imagemData
+                };
+
+                const projetos = JSON.parse(localStorage.getItem('projetosSENAI')) || [];
+                projetos.unshift(novoProjeto);
+                localStorage.setItem('projetosSENAI', JSON.stringify(projetos));
+
+                document.getElementById('avisoModal').style.display = 'flex';
+            }
+
+            if (fotoInput.files && fotoInput.files[0]) {
+                const leitor = new FileReader();
+                leitor.onload = function(e) {
+                    guardarEExibir(e.target.result);
+                };
+                leitor.readAsDataURL(fotoInput.files[0]);
+            } else {
+                guardarEExibir(null);
+            }
+        }
+
+        function irParaCapa() {
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+</html>
