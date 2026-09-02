@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Evita que palavras grandes vazem das caixas */
     word-wrap: break-word; 
     overflow-wrap: break-word;
 }
@@ -50,7 +49,7 @@ body {
     font-size: 5.5rem;
     color: #c71515; 
     text-transform: uppercase;
-    letter-spacing: -2px;
+    letter-spacing: 0px; /* Corrigido o espaçamento */
     line-height: 0.9;
     text-shadow: 2px 2px 0px #000;
     margin: 10px 0;
@@ -63,7 +62,7 @@ body {
     display: inline-block;
     padding: 5px 15px;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 0px; /* Corrigido o espaçamento */
     font-size: 1.2rem;
 }
 
@@ -111,6 +110,7 @@ nav a:hover {
     text-transform: uppercase;
     line-height: 1;
     margin-bottom: 10px;
+    letter-spacing: 0px; /* Corrigido o espaçamento */
 }
 
 .manchete-principal h2 {
@@ -265,7 +265,6 @@ nav a:hover {
     color: #fff;
     font-family: 'Impact', sans-serif;
     font-size: 1.8rem;
-    letter-spacing: 1px;
     border: 3px solid #000;
     padding: 12px;
     cursor: pointer;
@@ -328,45 +327,55 @@ nav a:hover {
 /* AJUSTES PARA VERSÃO MOBILE (CELULAR) */
 @media (max-width: 768px) {
     body {
-        padding: 0; /* Remove a margem cinza ao redor */
-        background-color: #fdfbf7; /* O fundo do site vira bege */
+        padding: 0; 
+        background-color: #fdfbf7; 
     }
 
     .folha-jornal {
         padding: 15px; 
-        box-shadow: none; /* Remove a sombra do computador */
-        border: none; /* Remove a borda exterior */
+        box-shadow: none; 
+        border: none; 
     }
     
     .colunas-noticia {
-        column-count: 1; /* Uma única coluna */
+        column-count: 1; 
     }
     
-    /* TÍTULOS MAIORES PARA FACILITAR A LEITURA */
+    /* TÍTULOS AUMENTADOS */
     .titulo-jornal {
-        font-size: 4rem; 
+        font-size: 4.5rem; 
     }
     
     .manchete-principal h1 {
-        font-size: 2.8rem;
+        font-size: 3.2rem;
     }
 
     .manchete-principal h2 {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
     }
 
-    /* SISTEMA DE MENU LATERAL (HUB) */
+    /* SISTEMA DE MENU LATERAL (HUB) - BOTÃO REFEITO MAIS BONITO */
     .menu-toggle {
         display: block;
-        background-color: #000;
-        color: #fff;
-        padding: 12px;
+        background-color: #fff;
+        color: #000;
+        border: 2px solid #000;
+        padding: 8px 16px;
         text-align: center;
-        font-family: 'Impact', sans-serif;
-        font-size: 1.6rem;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
         cursor: pointer;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
+        margin: 15px auto 25px auto;
+        max-width: 140px;
+        text-transform: uppercase;
+        box-shadow: 3px 3px 0px #c71515;
+        transition: all 0.2s ease;
+    }
+
+    .menu-toggle:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0px #c71515;
     }
 
     .overlay-menu.aberto {
@@ -380,7 +389,7 @@ nav a:hover {
     nav {
         position: fixed;
         top: 0;
-        left: -280px; /* Escondido fora da tela */
+        left: -280px; 
         width: 250px;
         height: 100%;
         background-color: #111;
@@ -395,7 +404,7 @@ nav a:hover {
     }
     
     nav.aberto {
-        left: 0; /* Desliza para dentro da tela */
+        left: 0; 
     }
     
     nav a {
